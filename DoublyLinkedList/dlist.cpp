@@ -1,29 +1,23 @@
 #include "dlist.h"
-#include <iostream>
-using namespace std;
-
-
 
 
 // Returns the node at a particular index (0 is the head). If n >= size()
 // return nullptr; if n < 0, return the head of the list.
 // Must run in O(n) time.
-dlist::node* at(int n) {
+dlist::node* dlist::at(int n) const {
     int index = 0;
-    dlist::node * x = head();
-    x = dlist::head();
-    while (index != n && x != nullptr) {
+    struct node * temp;
+    temp = head();
+    while (index != n && temp != nullptr) {
         index++;
-        x = x -> next;
+        temp = temp -> next;
     }
-    if (index == n && x != nullptr) {
-        return x;
+    if (index == n && temp != nullptr) {
+        return temp;
     } else {
         return nullptr;
     }
 }
-
-
 
 
 // Insert a new value, after an existing one. If previous == nullptr, then
@@ -34,15 +28,11 @@ void dlist::insert(node *previous, int value) {
 }
 
 
-
-
 // Delete the given node. Should do nothing if which == nullptr.
 // Must run in O(1) time.
 void dlist::remove(node* which) {
 
 }
-
-
 
 
 // Add a new element to the *end* of the list
@@ -52,15 +42,11 @@ void dlist::push_back(int value) {
 }
 
 
-
-
 // Add a new element to the *beginning* of the list
 // Must run in O(1) time.
 void dlist::push_front(int value) {
 
 }
-
-
 
 
 // Remove the first element
@@ -70,15 +56,11 @@ void dlist::pop_front() {
 }
 
 
-
-
 // Remove the last element
 // Must run in O(1) time
 void dlist::pop_back() {
 
 }
-
-
 
 
 // Get the size of the list
@@ -94,15 +76,11 @@ int dlist::size() const {
 }
 
 
-
-
 // Returns true if the list is empty
 // Must run in O(1) time
 bool dlist::empty() const {
     return head() == nullptr;
 }
-
-
 
 
 /* a == b
@@ -127,8 +105,6 @@ bool operator== (const dlist& a, const dlist& b) {
 }
 
 
-
-
 /* a + b
    Returns a new list consisting of all the elements of a, followed by all the
    elements of b (i.e., the list concatenation).
@@ -138,8 +114,6 @@ bool operator== (const dlist& a, const dlist& b) {
 dlist operator+ (const dlist& a, const dlist& b) {
 
 }
-
-
 
 
 /* reverse(l)

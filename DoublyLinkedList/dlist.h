@@ -1,4 +1,5 @@
-#pragma once
+#ifndef DLIST_H
+#define DLIST_H
 /*
   dlist.h
   Doubly-linked lists of ints
@@ -88,3 +89,4 @@ dlist operator+ (const dlist& a, const dlist& b);
 */
 dlist reverse(const dlist& l);
 
+#endif
