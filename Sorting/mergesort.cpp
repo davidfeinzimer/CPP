@@ -3,6 +3,19 @@
  * Implementation of a bitonic mergesort
  */
 
+#include <iostream>
+using namespace std;
+
+/* printArray(input, size)
+   Print the passed array.
+*/
+void printArray(int * input, int size) {
+    for (int i = 0; i < size; i++) {
+        cout << input[i] << " ";
+    }
+    cout << endl;
+}
+
 /* merge(input, size, output, asc)
    Merge the two halves of the array input (which has size elements) into
    output. If asc is true, then the output array should be in ascending order;
@@ -10,35 +23,101 @@
 */
 void merge(int* input, int size, int* output, bool output_asc) {
     // Your merge implementation goes here
-    int mid = size / 2;
-    int i = 0, j = mid, k = 0;
+    cout << endl << "merge() asc:" << output_asc << " input: "; printArray(input, size);
 
-    while(i < mid && j < size) {
-        // Add the smaller of s1, s2 to output.
 
-        if (output_asc == true) {
-            if (input[i] <= input[j]) {
-                output[k++] = input[i++];
-            }
-            else {
-                output[k++] = input[j++];
-            }
-        } else {
-            if (input[i] <= input[j]) {
-                output[k++] = input[i++];
-            }
-            else {
-                output[k++] = input[j++];
-            }
-        }
+    // if (output_asc == true) {
+    //     for (int i = 0; i < size; i++) {
+    //         output[i] = input[i];
+    //     }
+    // } else {
+    //     int j = 0;
+    //     for (int i = size - 1; i > -1; i--) {
+    //         output[j] = input[i];
+    //         j++;
+    //     }
+    // }
 
-    }
 
-    // Reached the end of one or both, add any remaining elements
-    // Only one (or zero) or these loops will ever run, never both.
-    while(i < mid)  output[k++] = input[i++];
-    while(j < size) output[k++] = input[j++];
-    
+    // if (output_asc == true) {
+    //     int j = size - 1;
+    //     int mid = size / 2;
+    //     for (int i = 0; i < mid; i++) {
+    //         output[i] = input[i];
+    //         output[j] = input[j];
+    //         j--;
+    //     }
+    // } else {
+    //     int mid = size / 2;
+    //     int j = mid;
+    //     for (int i = 0; i < mid; i++) {
+    //         output[i] = input[i];
+    //         output[j] = input[j];
+    //         j++;
+    //     }
+    // }
+
+
+    // if (output_asc == true) {
+    //     int x = 0;
+    //     int y = size - 1;
+    //     int mid = size / 2;
+    //     int pos = 0;
+    //     while (x < mid && y >= mid) {
+    //         if (input[x] <= input[y]) {
+    //             output[pos] = input[x];
+    //             x++;
+    //         } else {
+    //             output[pos] = input[y];
+    //             y--;
+    //         }
+    //         pos++;
+    //     }
+    //     if (x < mid) {
+    //         while (x < mid) {
+    //             output[pos] = x;
+    //             pos++;
+    //             x++;
+    //         }
+    //     } else if (y >= mid) {
+    //         while (y >= mid) {
+    //             output[pos] = input[y];
+    //             pos++;
+    //             y--;
+    //         }
+    //     }
+    // } else {
+    //     int mid = size / 2;
+    //     int x = mid-1;
+    //     int y = mid;
+    //     int pos = 0;
+    //     while (x > 0 && y < size) {
+    //         if (input[x] >= input[y]) {
+    //             output[pos] = input[x];
+    //             x--;
+    //         } else {
+    //             output[pos] = input[y];
+    //             y++;
+    //         }
+    //         pos++;
+    //     }
+    //     if (x > 0) {
+    //         while (x > 0) {
+    //             output[pos] = x;
+    //             pos++;
+    //             x--;
+    //         }
+    //     } else if (y < size) {
+    //         while (y < size) {
+    //             output[pos] = input[y];
+    //             pos++;
+    //             y++;
+    //         }
+    //     }
+    // }
+
+
+    cout << "merge() output: "; printArray(output, size);
 }
 
 /* mergesort(input, size, output, asc)
@@ -48,28 +127,7 @@ void merge(int* input, int size, int* output, bool output_asc) {
 */
 void mergesort(int *input, int size, int* output, bool output_asc) {
     // Your mergesort implementation goes here
-    if (size == 0) {
-        return;
-    }
-    else if (size == 1) {
-        output[0] = input[0]; // Copy one
-        return;
-    }
-
-    int* temp = new int[size]; // Temporary space
-
-    int mid = size / 2;
-
-    mergesort(input,       mid,        temp,       output_asc);    // Sort lower half
-    mergesort(input + mid, size - mid, temp + mid, output_asc);    // Sort upper half
-    mergesort(input,       size,       temp,       output_asc); // Merge
-
-    // Copy to output
-    for (int i = 0; i < size; ++i) {
-        output[i] = temp[i];
-    }
-
-    delete[] temp;
+    cout << endl << "mergesort() asc:" << output_asc << " input: "; printArray(input, size);
 }
 
 /* mergesort(input, size)

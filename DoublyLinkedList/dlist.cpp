@@ -24,7 +24,24 @@ dlist::node* dlist::at(int n) const {
 // the list is assumed to be empty.
 // Must run in O(1) time.
 void dlist::insert(node *previous, int value) {
-
+    node * newNode = new node();
+    newNode -> value = value;
+    if (previous == nullptr) {
+        _head = newNode;
+        _tail = newNode;
+    } else {
+        if (previous -> next == nullptr) {
+            previous -> next = newNode;
+            newNode -> prev = previous;
+            tail = newNode;
+        } else {
+            temp = previous -> next;
+            previous -> next = newNode;
+            newNode -> previous = previous;
+            newNode -> next = temp;
+            temp -> previous = newNode;
+        }
+    }
 }
 
 
@@ -89,7 +106,7 @@ bool dlist::empty() const {
    pointers! You have to compare the values stored in the nodes.)
 
    Must run in O(m) time, where m is the length of the shorter of the two lists.
-*/ 
+*/
 bool operator== (const dlist& a, const dlist& b) {
     if (a.head() -> value == b.head() -> value) {
         if (a.head() -> next != nullptr && b.head() -> next != nullptr) {
@@ -117,10 +134,10 @@ dlist operator+ (const dlist& a, const dlist& b) {
 
 
 /* reverse(l)
-   Returns a new list that is the *reversal* of l; that is, a new list 
+   Returns a new list that is the *reversal* of l; that is, a new list
    containing the same elements as l but in the reverse order.
 
-   Must run in O(n) time. 
+   Must run in O(n) time.
 */
 dlist reverse(const dlist& l) {
 
